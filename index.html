@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy · T5S Holdings</title>
+  <link rel="icon" type="image/png" href="assets/llogo nb.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --red:    #8B0000;
+      --red-hi: #CC2020;
+      --chrome: #C8C8D0;
+      --white:  #F0EEEC;
+      --dim:    #888880;
+      --bg:     #000000;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      overflow-x: hidden;
+      cursor: default;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.8rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(5,5,5,0.95) 0%, transparent 100%);
+    }
+    .nav-mark {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--chrome);
+      text-decoration: none;
+    }
+    .nav-back {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      color: var(--dim);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-back:hover { color: var(--white); }
+    .nav-back-arrow { color: var(--red-hi); }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: 14rem 2rem 5rem;
+      text-align: center;
+      position: relative;
+    }
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,0,0,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .page-eyebrow {
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      letter-spacing: 0.45em;
+      color: var(--red-hi);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+    .page-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.6rem, 6vw, 3rem);
+      font-weight: 900;
+      letter-spacing: 0.2em;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .page-date {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+    }
+    .header-rule {
+      width: 1px;
+      height: 50px;
+      background: linear-gradient(to bottom, transparent, var(--red-hi), transparent);
+      margin: 3rem auto 0;
+    }
+
+    /* CONTENT */
+    .policy-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 8rem;
+    }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin: 4rem 0 3rem;
+    }
+    .section-divider::before,
+    .section-divider::after {
+      content: '';
+      flex: 1;
+      height: 0.5px;
+      background: linear-gradient(to right, transparent, var(--red) 40%, transparent);
+    }
+    .section-divider span {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.4em;
+      color: var(--red-hi);
+      white-space: nowrap;
+    }
+
+    /* POLICY SECTIONS */
+    .policy-section {
+      margin-bottom: 3.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .policy-section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-num {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.35em;
+      color: var(--red-hi);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      color: var(--chrome);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 0.5px solid rgba(139,0,0,0.2);
+    }
+    .section-body {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 2;
+      color: var(--dim);
+      font-style: italic;
+    }
+    .section-body p + p { margin-top: 1rem; }
+    .section-body strong {
+      color: var(--chrome);
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* RIGHTS LIST */
+    .rights-list {
+      list-style: none;
+      margin-top: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .rights-list li {
+      display: flex;
+      gap: 1.2rem;
+      align-items: flex-start;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--dim);
+      font-style: italic;
+    }
+    .rights-list li::before {
+      content: '—';
+      color: var(--red-hi);
+      flex-shrink: 0;
+      margin-top: 0.1em;
+      font-style: normal;
+    }
+    .rights-list li strong {
+      color: var(--chrome);
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    /* INTRO QUOTE */
+    .intro-quote {
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-bottom: 1rem;
+      border: 0.5px solid rgba(139,0,0,0.15);
+      position: relative;
+    }
+    .intro-quote::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 1px;
+      background: linear-gradient(to right, transparent, var(--red-hi), transparent);
+    }
+    .intro-quote p {
+      font-size: clamp(1rem, 3vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.9;
+      color: var(--white);
+      opacity: 0.8;
+      letter-spacing: 0.04em;
+    }
+    .intro-quote em { color: var(--chrome); font-style: normal; }
+
+    /* CONTACT BLOCK */
+    .contact-block {
+      margin-top: 1.5rem;
+      padding: 1.8rem 2rem;
+      border: 0.5px solid rgba(139,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .contact-block-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+      text-transform: uppercase;
+    }
+    .contact-block-email {
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--chrome);
+      text-decoration: none;
+      border-bottom: 0.5px solid rgba(139,0,0,0.4);
+      padding-bottom: 0.3rem;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .contact-block-email:hover { color: var(--white); border-color: var(--red-hi); }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid rgba(139,0,0,0.2);
+      padding: 2.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .footer-mark {
+      font-family: 'Cinzel', serif;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      color: var(--dim);
+    }
+    .footer-copy {
+      font-family: 'Cinzel', serif;
+      font-size: 0.5rem;
+      letter-spacing: 0.15em;
+      color: rgba(136,136,128,0.4);
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 1.2rem 1.2rem; }
+      .page-header { padding: 10rem 1.2rem 4rem; }
+      .policy-wrap { padding: 3rem 1.2rem 6rem; }
+      .contact-block { flex-direction: column; text-align: center; }
+      footer { flex-direction: column; align-items: center; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav>
+      <a class="nav-mark" href="https://wearet5s.com/">T5S</a>
+      <a class="nav-back" href="https://wearet5s.com/">
+        <span class="nav-back-arrow">←</span>
+        <span>Return</span>
+      </a>
+    </nav>
+
+    <header class="page-header">
+      <span class="page-eyebrow">Legal · Transparency</span>
+      <h1 class="page-title">Privacy Policy</h1>
+      <p class="page-date">Effective Date: May 3, 2026</p>
+      <div class="header-rule"></div>
+    </header>
+
+    <main class="policy-wrap">
+
+      <div class="intro-quote policy-section">
+        <p>T5S Holdings operates as a <em>private correspondence</em> organization.<br/>
+        We collect only what is necessary. We protect what is entrusted.</p>
+      </div>
+
+      <div class="section-divider"><span>The Framework</span></div>
+
+      <div class="policy-section">
+        <span class="section-num">01</span>
+        <p class="section-title">Our Privacy Philosophy</p>
+        <div class="section-body">
+          <p>T5S Holdings (Legion V · Omni-Operations) is a Houston-based organization dedicated to real estate acquisition, social infrastructure, and strategic capital ventures. Our digital presence at <strong>wearet5s.com</strong> is an informational gateway designed for private correspondence and the evaluation of strategic partnerships.</p>
+          <p>We do not engage in public-facing advertising or e-commerce. We do not collect payment card information, billing addresses, or consumer shopping histories. Access is earned, not given — and the same principle governs your data.</p>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">02</span>
+        <p class="section-title">Information We Collect</p>
+        <div class="section-body">
+          <p>We limit our data collection to what is adequate, relevant, and reasonably necessary for our disclosed operations.</p>
+          <p><strong>Voluntary Inquiries:</strong> When you contact us via our Private Inquiries email or external connection portals, we collect the personal information you voluntarily provide — such as your name, business affiliation, and contact details.</p>
+          <p><strong>Administrative Log Data:</strong> Our hosting provider automatically collects basic metadata, such as IP addresses and access timestamps, to ensure site security and functionality.</p>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">03</span>
+        <p class="section-title">Use of Your Personal Information</p>
+        <div class="section-body">
+          <p>We process your information exclusively to facilitate the earned access and private correspondence models of our organization. This includes evaluating potential partnerships within our three pillars:</p>
+          <p><strong>Vindex</strong> · Real Estate &nbsp;·&nbsp; <strong>Operations</strong> · Social Services &nbsp;·&nbsp; <strong>Alliance</strong> · Strategic Partnerships</p>
+          <p>We do not use your personal information for targeted advertising or automated profiling.</p>
+        </div>
+      </div>
+
+      <div class="section-divider"><span>Data & Rights</span></div>
+
+      <div class="policy-section">
+        <span class="section-num">04</span>
+        <p class="section-title">No Sale of Personal Data</p>
+        <div class="section-body">
+          <p>T5S Holdings does not sell your personal data. We define "sale" as the sharing or transferring of personal data to a third party for monetary or other valuable consideration. We only disclose information to:</p>
+          <p><strong>Vetted Processors:</strong> Service providers who assist in our technical operations (e.g., email hosting) and are contractually bound to maintain your data's confidentiality.</p>
+          <p><strong>Legal Mandates:</strong> Authorities where disclosure is required to comply with a legal proceeding or protect the legal rights of T5S Holdings.</p>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">05</span>
+        <p class="section-title">Sensitive Data & Children</p>
+        <div class="section-body">
+          <p>We do not process sensitive personal data — such as health, ethnic, or religious information — or biometric data without your prior, affirmative consent. Our website is not intended for use by children under 13, and we do not knowingly collect personal data from children.</p>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">06</span>
+        <p class="section-title">Your Texas Privacy Rights</p>
+        <div class="section-body">
+          <p>Under the Texas Data Privacy and Security Act (TDPSA), Texas residents have the following rights regarding their personal data:</p>
+          <ul class="rights-list">
+            <li><strong>Right of Access:</strong> To confirm if we are processing your data and to obtain a copy in a portable format.</li>
+            <li><strong>Right of Correction:</strong> To rectify inaccuracies in the personal data we hold about you.</li>
+            <li><strong>Right of Deletion:</strong> To request that we delete data you have provided or that we have obtained about you.</li>
+            <li><strong>Right to Opt-Out:</strong> To opt-out of the processing of your data for sales or profiling, should such activities ever occur.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">07</span>
+        <p class="section-title">Contact & Requests</p>
+        <div class="section-body">
+          <p>To exercise these rights, please contact us at our protected inquiry address. We will respond to authenticated requests within 45 days. If a request is denied, you have the right to appeal via the same address; if unsuccessful, you may submit a complaint to the Texas Attorney General.</p>
+        </div>
+        <div class="contact-block">
+          <span class="contact-block-label">Private Inquiries</span>
+          <a class="contact-block-email" href="/cdn-cgi/l/email-protection#533a3d353c1324363221363f253c7d303c3e"><span class="__cf_email__" data-cfemail="076e6961684770626675626b71682964686a">[email&#160;protected]</span></a>
+        </div>
+      </div>
+
+      <div class="policy-section">
+        <span class="section-num">08</span>
+        <p class="section-title">Data Security</p>
+        <div class="section-body">
+          <p>We implement reasonable technical and administrative measures, including encryption and access controls, to protect your data. However, as our site is used for private correspondence, the transmission of personal information is done at your own risk.</p>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <span class="footer-mark">T5S Holdings</span>
+      <span class="footer-copy">&copy; 2026 T5S Family Legacy Trust · All Rights Reserved</span>
+    </footer>
+  </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    const sections = document.querySelectorAll('.policy-section');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    sections.forEach(s => obs.observe(s));
+  </script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"57d5cd2fcb53490c8c986ef27590d71d","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
